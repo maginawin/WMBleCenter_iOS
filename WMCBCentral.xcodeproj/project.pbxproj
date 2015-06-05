@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0884D3731B2134EC00E64B67 /* WMBleTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0884D3721B2134EC00E64B67 /* WMBleTemplate.m */; };
 		08E3A5F31B1ED4D400ADD19C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A5F21B1ED4D400ADD19C /* main.m */; };
 		08E3A5F61B1ED4D400ADD19C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A5F51B1ED4D400ADD19C /* AppDelegate.m */; };
 		08E3A5F91B1ED4D400ADD19C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A5F81B1ED4D400ADD19C /* ViewController.m */; };
@@ -14,6 +15,8 @@
 		08E3A5FE1B1ED4D400ADD19C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E3A5FD1B1ED4D400ADD19C /* Images.xcassets */; };
 		08E3A6011B1ED4D400ADD19C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E3A5FF1B1ED4D400ADD19C /* LaunchScreen.xib */; };
 		08E3A60D1B1ED4D400ADD19C /* WMCBCentralTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A60C1B1ED4D400ADD19C /* WMCBCentralTests.m */; };
+		08E3A61C1B1ED7AB00ADD19C /* WMLEDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A61B1B1ED7AB00ADD19C /* WMLEDiscovery.m */; };
+		08E3A61F1B1EE3FA00ADD19C /* WMLEPeripheralService.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E3A61E1B1EE3FA00ADD19C /* WMLEPeripheralService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0884D3711B2134EC00E64B67 /* WMBleTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBleTemplate.h; sourceTree = "<group>"; };
+		0884D3721B2134EC00E64B67 /* WMBleTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBleTemplate.m; sourceTree = "<group>"; };
 		08E3A5ED1B1ED4D300ADD19C /* WMCBCentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WMCBCentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E3A5F11B1ED4D400ADD19C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08E3A5F21B1ED4D400ADD19C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +45,11 @@
 		08E3A6061B1ED4D400ADD19C /* WMCBCentralTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WMCBCentralTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E3A60B1B1ED4D400ADD19C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08E3A60C1B1ED4D400ADD19C /* WMCBCentralTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMCBCentralTests.m; sourceTree = "<group>"; };
+		08E3A61A1B1ED7AB00ADD19C /* WMLEDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLEDiscovery.h; sourceTree = "<group>"; };
+		08E3A61B1B1ED7AB00ADD19C /* WMLEDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLEDiscovery.m; sourceTree = "<group>"; };
+		08E3A61D1B1EE3FA00ADD19C /* WMLEPeripheralService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLEPeripheralService.h; sourceTree = "<group>"; };
+		08E3A61E1B1EE3FA00ADD19C /* WMLEPeripheralService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLEPeripheralService.m; sourceTree = "<group>"; };
+		08E3A6201B1EE8BC00ADD19C /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0884D3701B2134A700E64B67 /* CB Basic */ = {
+			isa = PBXGroup;
+			children = (
+				0884D3711B2134EC00E64B67 /* WMBleTemplate.h */,
+				0884D3721B2134EC00E64B67 /* WMBleTemplate.m */,
+			);
+			name = "CB Basic";
+			sourceTree = "<group>";
+		};
 		08E3A5E41B1ED4D300ADD19C = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +100,8 @@
 		08E3A5EF1B1ED4D300ADD19C /* WMCBCentral */ = {
 			isa = PBXGroup;
 			children = (
+				0884D3701B2134A700E64B67 /* CB Basic */,
+				08E3A6161B1ED4E700ADD19C /* CBCentral */,
 				08E3A5F41B1ED4D400ADD19C /* AppDelegate.h */,
 				08E3A5F51B1ED4D400ADD19C /* AppDelegate.m */,
 				08E3A5F71B1ED4D400ADD19C /* ViewController.h */,
@@ -98,6 +119,7 @@
 			children = (
 				08E3A5F11B1ED4D400ADD19C /* Info.plist */,
 				08E3A5F21B1ED4D400ADD19C /* main.m */,
+				08E3A6201B1EE8BC00ADD19C /* prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,6 +139,17 @@
 				08E3A60B1B1ED4D400ADD19C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08E3A6161B1ED4E700ADD19C /* CBCentral */ = {
+			isa = PBXGroup;
+			children = (
+				08E3A61A1B1ED7AB00ADD19C /* WMLEDiscovery.h */,
+				08E3A61B1B1ED7AB00ADD19C /* WMLEDiscovery.m */,
+				08E3A61D1B1EE3FA00ADD19C /* WMLEPeripheralService.h */,
+				08E3A61E1B1EE3FA00ADD19C /* WMLEPeripheralService.m */,
+			);
+			name = CBCentral;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +201,11 @@
 				TargetAttributes = {
 					08E3A5EC1B1ED4D300ADD19C = {
 						CreatedOnToolsVersion = 6.3.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					08E3A6051B1ED4D400ADD19C = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -220,8 +258,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				08E3A5F91B1ED4D400ADD19C /* ViewController.m in Sources */,
+				08E3A61F1B1EE3FA00ADD19C /* WMLEPeripheralService.m in Sources */,
 				08E3A5F61B1ED4D400ADD19C /* AppDelegate.m in Sources */,
+				0884D3731B2134EC00E64B67 /* WMBleTemplate.m in Sources */,
 				08E3A5F31B1ED4D400ADD19C /* main.m in Sources */,
+				08E3A61C1B1ED7AB00ADD19C /* WMLEDiscovery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +388,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = /Users/maginawin/Documents/WwdDemo/WMCBCentral/WMCBCentral/prefix.pch;
 				INFOPLIST_FILE = WMCBCentral/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,7 +400,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = /Users/maginawin/Documents/WwdDemo/WMCBCentral/WMCBCentral/prefix.pch;
 				INFOPLIST_FILE = WMCBCentral/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +461,7 @@
 				08E3A6121B1ED4D400ADD19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08E3A6131B1ED4D400ADD19C /* Build configuration list for PBXNativeTarget "WMCBCentralTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +470,7 @@
 				08E3A6151B1ED4D400ADD19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WMLEDiscovery.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)scanBleDevices:(id)sender {
+    [[WMLEDiscovery sharedInstance] startScanningForUUIDString:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,0 +1,27 @@
+//
+//  perfix.pch
+//  WMCBCentral
+//
+//  Created by maginawin on 15/6/3.
+//  Copyright (c) 2015年 wendong wang. All rights reserved.
+//
+
+#ifndef R6Watch_prefix_pch
+#define R6Watch_prefix_pch
+
+// @name 颜色相关
+// 参数格式为 : 0xFFFFFF
+#define WMColorWithHexRGB(rgbValue) [UIColor colorWithRed:(float)((rgbValue & 0xFF0000) >> 16) / 255.0 green:(float)((rgbValue & 0xFF00) >> 8) / 255.0 blue:(float)(rgbValue & 0xFF) / 255.0 alpha:1.0]
+
+// !参数格式为 : 255, 255, 255
+#define WMColorWithRGB(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
+
+/** WMLog */
+#ifdef DEBUG
+#define WMSLog(format, ...)    do { NSString* file = [[NSString alloc] initWithFormat:@"%s", __FILE__];NSLog((@"\n> File : %@; Line : %d; \n> Func : %s; \n> Log  : "format),[file lastPathComponent], __LINE__, __func__, ##__VA_ARGS__);} while (0)
+#define WMLog(format, ...) do {NSLog((format),##__VA_ARGS__);} while (0)
+#else
+#define WMLog(...)
+#define WMSlog(...)
+#endif
+#endif
