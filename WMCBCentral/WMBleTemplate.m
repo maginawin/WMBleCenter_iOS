@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 // Use for save connected peripheral
-/** 存储已经连接的 peripheral 的常量 */
+
 NSString* const kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
 
 // Use for post central manager delegate notification

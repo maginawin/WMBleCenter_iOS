@@ -11,36 +11,81 @@
 
 #pragma mark - NSString const for save connected peripheral
 
+/**
+ * @return 用于保存已经连接 peripheral 的 NSString* const, 可扩展存至 UserDefaults
+ */
 extern NSString* const kBleSavedPeripheralIdentifier;
 
 #pragma mark - NSString const for post central manager delegate notification
 
-/** (CBCentralManager*)central, 可以取其状态 central.state */
+/**
+ * @return (CBCentralManager*)central : 蓝牙状态改变, 取其状态 central.state
+ */
 extern NSString* const kBleCentralManagerDidUpdateState;
-/** (NSArray*)sendObjectsm, index0 -> (CBPeripheral*)peripheral, index1 -> <NSDictionary*)advertisementData, index2 -> (NSNumber*)RSSI */
+
+/**
+ * @return (NSArray*)sendObjects : 发现 peripheral
+ * @return - index0 : (CBPeripheral*)peripheral
+ * @return - index1 : (NSDictionary*)advertisementData
+ * @return - index2 : (NSNubmer*)RSSI
+ */
 extern NSString* const kBleCentralManagerDidDiscoverPeripheral;
-/** (CBPeripheral*)peripheral */
+
+/**
+ * @return (CBPeripheral*)peripheral : 连接 peripheral
+ */
 extern NSString* const kBleCentralManagerDidConnectPeripheral;
-/** (CBPeripheral*)peripheral */
+
+/**
+ * @return (CBPeripheral*)peripheral : 断开 peripheral 的连接
+ */
 extern NSString* const kBleCentralManagerDidDisconnectPeripheral;
-/** (CBPeripheral*)peripheral */
+
+/**
+ * @return (CBPeripheral*)peripheral : 连接 peripheral 失败
+ */
 extern NSString* const kBleCentralManagerDidFailToConnectPeripheral;
 
 #pragma mark - NSString const for post peripheral delegate notificaiton
 
-/** (CBPeripheral*)peripheral */
+/** 
+ *  @return (CBPeripheral*)peripheral : 发现 peripheral.services
+ */
 extern NSString* const kBlePeripheralDidDiscoverServices;
-/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBService*)service */
+
+/**
+ * @return (NSArray*)sendObjects : 发现 service.characteristics
+ * @return - index0 : (CBPeripheral*)peripheral
+ * @return - index1 : (CBService*)service
+ */
 extern NSString* const kBlePeripheralDidDiscoverCharacteristicsForService;
-/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBCharacteristic*)characteristic */
+
+/**
+ * @return (NSArray*)sendObjects : 读或接收到 characteristic.value
+ * @return - index0 : (CBperipheral*)peripheral
+ * @return - index1 : (CBCharacteristic*)characteristic
+ */
 extern NSString* const kBlePeripheralDidUpdateValueForCharacteristic;
-/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBCharacteristic*)characteristic */
+
+/** 
+ * @return (NSArray*)sendObjects : 向 characteristic 中写入数据时调用
+ * @return - index0 : (CBPeripheral*)peripheral
+ * @return - index1 : (CBCharacteristic*)characteritsic
+ */
 extern NSString* const kBlePeripheralDidWriteValueForCharacteristic;
-/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (NSNumber*)RSSI */
+
+/**
+ * @return (NSArray*)sendObjects : 更新或者读取 peripheral.RSSI
+ * @return - index0 : (CBPeripheral*)peripheral
+ * @return - index1 : (NSNumber*)RSSI
+ */
 extern NSString* const kBlePeripheralDidUpdateOrReadRSSI;
 
 @interface WMBleTemplate : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+/**
+ * @return static instancetype about self
+ */
 + (instancetype)sharedInstance;
 
 - (void)startScanningForUUIDString:(NSString*)uuidString;
