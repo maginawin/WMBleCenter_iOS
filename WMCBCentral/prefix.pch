@@ -24,4 +24,8 @@
 #define WMLog(...)
 #define WMSlog(...)
 #endif
+
+// 角度转换为弧度
+#define WMRadiansFromDegrees(degrees) ((degrees) * M_PI / 180)
+
 #endif
