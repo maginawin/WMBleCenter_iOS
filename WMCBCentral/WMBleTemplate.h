@@ -81,6 +81,14 @@ extern NSString* const kBlePeripheralDidWriteValueForCharacteristic;
  */
 extern NSString* const kBlePeripheralDidUpdateOrReadRSSI;
 
+#pragma mark - Ble Scan NSString const for notification
+
+extern NSString* const kBleStartScanning;
+
+extern NSString* const kBleStopScanning;
+
+#pragma mark -
+
 @interface WMBleTemplate : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 /**

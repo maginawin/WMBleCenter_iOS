@@ -27,6 +27,10 @@ NSString* const kBlePeripheralDidUpdateValueForCharacteristic = @"kBlePeripheral
 NSString* const kBlePeripheralDidWriteValueForCharacteristic = @"kBlePeripheralDidWriteValueForCharacteristic";
 NSString* const kBlePeripheralDidUpdateOrReadRSSI = @"kBlePeripheralDidUpdateOrReadRSSI";
 
+// Use for post scanning ble status notification
+NSString* const kBleStartScanning = @"kBleStartScanning";
+NSString* const kBleStopScanning = @"kBleStopScanning";
+
 @interface WMBleTemplate()
 
 @property (strong, nonatomic) CBCentralManager* mCentralManager;
@@ -78,10 +82,12 @@ NSString* const kBlePeripheralDidUpdateOrReadRSSI = @"kBlePeripheralDidUpdateOrR
     } else {
         [_mCentralManager scanForPeripheralsWithServices:nil options:options];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleStartScanning object:nil];
 }
 
 - (void)stopScanning {
     [_mCentralManager stopScan];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleStopScanning object:nil];
 }
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral {
