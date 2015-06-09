@@ -91,13 +91,15 @@ NSString* const kBleStopScanning = @"kBleStopScanning";
 }
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral {
-    if (peripheral.state != CBPeripheralStateConnected) {
+    if (peripheral && peripheral.state != CBPeripheralStateConnected) {
         [_mCentralManager connectPeripheral:peripheral options:nil];
     }
 }
 
 - (void)disconnectPeripheral:(CBPeripheral *)peripheral {
-    [_mCentralManager cancelPeripheralConnection:peripheral];
+    if (peripheral) {
+        [_mCentralManager cancelPeripheralConnection:peripheral];
+    }
 }
 
 #pragma mark - Central manager delegate
