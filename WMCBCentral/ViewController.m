@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "WMLEDiscovery.h"
+//#import "WMLEDiscovery.h"
+#import "WMBleTemplate.h"
 
 @interface ViewController ()
 
@@ -21,7 +22,8 @@
 }
 
 - (IBAction)scanBleDevices:(id)sender {
-    [[WMLEDiscovery sharedInstance] startScanningForUUIDString:nil];
+    [[WMBleTemplate sharedInstance] startScanningForUUIDString:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

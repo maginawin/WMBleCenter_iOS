@@ -42,7 +42,7 @@ NSString* kSavedLEIdentifier = @"kSavedLEIdentifier";
 
 + (void)load {
     __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [WMLEDiscovery sharedInstance];
+//        [WMLEDiscovery sharedInstance];
         [[NSNotificationCenter defaultCenter] removeObserver:observer];
     }];
 }

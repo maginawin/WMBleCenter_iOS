@@ -9,7 +9,23 @@
 #import "WMBleTemplate.h"
 #import "AppDelegate.h"
 
-NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
+// Use for save connected peripheral
+/** 存储已经连接的 peripheral 的常量 */
+NSString* const kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
+
+// Use for post central manager delegate notification
+NSString* const kBleCentralManagerDidUpdateState = @"kBleCentralManagerDidUpdateState";
+NSString* const kBleCentralManagerDidDiscoverPeripheral = @"kBleCentralManagerDidDiscoverPeripheral";
+NSString* const kBleCentralManagerDidConnectPeripheral = @"kBleCentralManagerDidConnectPeripheral";
+NSString* const kBleCentralManagerDidDisconnectPeripheral = @"kBleCentralManagerDidDisconnectPeripheral";
+NSString* const kBleCentralManagerDidFailToConnectPeripheral = @"kBleCentralManagerDidFailToConnectPeripheral";
+
+// Use for post peripheral delegate notification
+NSString* const kBlePeripheralDidDiscoverServices = @"kBlePeripheralDidDiscoverServices";
+NSString* const kBlePeripheralDidDiscoverCharacteristicsForService = @"kBlePeripheralDidDiscoverCharacteristicsForService";
+NSString* const kBlePeripheralDidUpdateValueForCharacteristic = @"kBlePeripheralDidUpdateValueForCharacteristic";
+NSString* const kBlePeripheralDidWriteValueForCharacteristic = @"kBlePeripheralDidWriteValueForCharacteristic";
+NSString* const kBlePeripheralDidUpdateOrReadRSSI = @"kBlePeripheralDidUpdateOrReadRSSI";
 
 @interface WMBleTemplate()
 
@@ -38,12 +54,17 @@ NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
     return self;
 }
 
+/**
+ *  ============================================================
+ *  继承自此类的就请实现这个 load 方法, 用于 App 初始化时初始化 ble 单例
+ *  ============================================================
 + (void)load {
     __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self sharedInstance];
         [[NSNotificationCenter defaultCenter] removeObserver:observer];
     }];
 }
+ */
 
 #pragma mark - Public Access
 
@@ -76,6 +97,9 @@ NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
 #pragma mark - Central manager delegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleCentralManagerDidUpdateState object:central];
+    
     switch (central.state) {
         case CBCentralManagerStatePoweredOff:{
             WMLog(@"CBCentralManagerStatePoweredOff");
@@ -95,24 +119,40 @@ NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+    NSArray* sendObjects = [NSArray arrayWithObjects:peripheral, advertisementData, RSSI, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleCentralManagerDidDiscoverPeripheral object:sendObjects];
+    
     WMLog(@"didDiscover \n  Peripheral : %@  RSSI : %d \n", peripheral.name, [RSSI intValue]);
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleCentralManagerDidConnectPeripheral object:peripheral];
+    
     WMLog(@"didConnectPeripheral : %@", peripheral.name);
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleCentralManagerDidDisconnectPeripheral object:peripheral];
+    
     WMLog(@"didDisconnectPeripheral : %@", peripheral.name);
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBleCentralManagerDidFailToConnectPeripheral object:peripheral];
+    
     WMLog(@"didFailToConnectPeripheral : %@", peripheral.name);
 }
 
 #pragma mark - Peripheral delegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBlePeripheralDidDiscoverServices object:peripheral];
+    
     WMLog(@"peripheral : %@  didDiscoverServices : \n", peripheral.name);
     
     for (CBService* service in peripheral.services) {
@@ -122,6 +162,10 @@ NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
+    
+    NSArray* sendObjects = [NSArray arrayWithObjects:peripheral, service, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBlePeripheralDidDiscoverCharacteristicsForService object:sendObjects];
+    
     WMLog(@"peripheral : %@  didDiscoverCharacteristicsForService : \n", peripheral.name);
     
     for (CBCharacteristic* characteristic in service.characteristics) {
@@ -131,14 +175,26 @@ NSString* kBleSavedPeripheralIdentifier = @"kBleSavedPeripheralIdentifier";
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    
+    NSArray* sendObjects = [NSArray arrayWithObjects:peripheral, characteristic, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBlePeripheralDidUpdateValueForCharacteristic object:sendObjects];
+    
     WMLog(@"peripheral : %@ didUpdateValue : %@", peripheral.name, [WMBleTemplate hexStringFromHexData:characteristic.value]);
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    
+    NSArray* sendObjects = [NSArray arrayWithObjects:peripheral, characteristic, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBlePeripheralDidWriteValueForCharacteristic object:sendObjects];
+    
     WMLog(@"peripheral : %@ didWriteValue : %@", peripheral.name, [WMBleTemplate hexStringFromHexData:characteristic.value]);
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral RSSI:(NSNumber*)RSSI error:(NSError*)error {
+    
+    NSArray* sendObjects = [NSArray arrayWithObjects:peripheral, RSSI, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBlePeripheralDidUpdateOrReadRSSI object:sendObjects];
+    
     WMLog(@"peripheral : %@ RSSI : %d", peripheral.name, [RSSI intValue]);
 }
 

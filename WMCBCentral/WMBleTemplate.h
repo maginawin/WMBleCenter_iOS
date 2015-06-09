@@ -9,9 +9,39 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-extern NSString* kBleSavedPeripheralIdentifier;
+#pragma mark - NSString const for save connected peripheral
+
+extern NSString* const kBleSavedPeripheralIdentifier;
+
+#pragma mark - NSString const for post central manager delegate notification
+
+/** (CBCentralManager*)central, 可以取其状态 central.state */
+extern NSString* const kBleCentralManagerDidUpdateState;
+/** (NSArray*)sendObjectsm, index0 -> (CBPeripheral*)peripheral, index1 -> <NSDictionary*)advertisementData, index2 -> (NSNumber*)RSSI */
+extern NSString* const kBleCentralManagerDidDiscoverPeripheral;
+/** (CBPeripheral*)peripheral */
+extern NSString* const kBleCentralManagerDidConnectPeripheral;
+/** (CBPeripheral*)peripheral */
+extern NSString* const kBleCentralManagerDidDisconnectPeripheral;
+/** (CBPeripheral*)peripheral */
+extern NSString* const kBleCentralManagerDidFailToConnectPeripheral;
+
+#pragma mark - NSString const for post peripheral delegate notificaiton
+
+/** (CBPeripheral*)peripheral */
+extern NSString* const kBlePeripheralDidDiscoverServices;
+/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBService*)service */
+extern NSString* const kBlePeripheralDidDiscoverCharacteristicsForService;
+/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBCharacteristic*)characteristic */
+extern NSString* const kBlePeripheralDidUpdateValueForCharacteristic;
+/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (CBCharacteristic*)characteristic */
+extern NSString* const kBlePeripheralDidWriteValueForCharacteristic;
+/** (NSArray*)sendObjects, index0 -> (CBPeripheral*)peripheral, index1 -> (NSNumber*)RSSI */
+extern NSString* const kBlePeripheralDidUpdateOrReadRSSI;
 
 @interface WMBleTemplate : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+
++ (instancetype)sharedInstance;
 
 - (void)startScanningForUUIDString:(NSString*)uuidString;
 
